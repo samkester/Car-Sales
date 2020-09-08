@@ -1,6 +1,6 @@
 const TOGGLE_FEATURE = "TOGGLE_FEATURE";
 
-export const defaultState = {
+export const initialState = {
     car: {
         price: 26395,
         name: '2019 Ford Mustang',
@@ -15,10 +15,10 @@ export const defaultState = {
     ]
 };
 
-export const cardReducer = (state, action) => {
+export const carReducer = (state, action) => {
     switch (action.type) {
         case TOGGLE_FEATURE: // action.data = ID number of the feature
-            console.log(state);
+            //console.log(state);
             return {
                 ...state,
                 additionalFeatures: state.additionalFeatures.map(item => {

@@ -1,15 +1,16 @@
 import React from 'react';
-
 import AddedFeature from './AddedFeature';
+import { connect } from 'react-redux';
+import { toggleFeature } from '../actions/carActions';
 
 const AddedFeatures = props => {
   return (
     <div className="content">
       <h6>Added features:</h6>
-      {props.car.features.length ? (
+      {props.additionalFeatures.length ? (
         <ol type="1">
-          {props.car.features.map(item => (
-            <AddedFeature key={item.id} feature={item} />
+          {props.additionalFeatures.filter(item => item.added).map(item => (
+            <AddedFeature key={item.id} feature={item} onClick={props.toggleFeature} />
           ))}
         </ol>
       ) : (
@@ -19,4 +20,8 @@ const AddedFeatures = props => {
   );
 };
 
-export default AddedFeatures;
+
+export default connect((state) => { return {
+  car: state.car,
+  additionalFeatures: state.additionalFeatures
+}}, {toggleFeature})(AddedFeatures);
